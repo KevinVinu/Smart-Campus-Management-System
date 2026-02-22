@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Remedial Attendance - LPU Campus{% endblock %}
+
+{% block page_title %}
+🎯 Remedial Attendance Code Entry
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">📝 Enter Remedial Code</h5>
+            </div>
+            <div class="card-body">
+                {% if error %}
+                <div class="alert alert-danger">
+                    <i class="bi bi-exclamation-triangle"></i> {{ error }}
+                </div>
+                {% endif %}
+
+                <form method="POST" class="needs-validation" novalidate>
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+                        <label class="form-label">🔢 6-Digit Remedial Code:</label>
+                        <input type="text" name="code" class="form-control form-control-lg" 
+                               placeholder="Enter 6-digit code" required pattern="[0-9]{6}"
+                               maxlength="6" minlength="6">
+                        <div class="form-text">Enter the 6-digit code provided by your faculty</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">👨‍🎓 Select Student:</label>
+                        <select name="student" class="form-select" required>
+                            <option value="">-- Choose Student --</option>
+                            {% for s in students %}
+                            <option value="{{ s.id }}">{{ s.name }} ({{ s.reg_no }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                        <i class="bi bi-check-circle"></i> Mark Attendance
+                    </button>
+                </form>
+
+                <div class="mt-4 pt-3 border-top">
+                    <div class="alert alert-info">
+                        <h6 class="alert-heading">ℹ️ How it works:</h6>
+                        <ul class="mb-0 ps-3">
+                            <li>Faculty provides a 6-digit remedial code</li>
+                            <li>Enter the code and select your student profile</li>
+                            <li>Attendance will be marked for the corresponding makeup class</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body text-center">
+                <a href="{% url 'makeup_dashboard' %}" class="btn btn-outline-primary">
+                    <i class="bi bi-bar-chart"></i> View Makeup Dashboard
+                </a>
+                <a href="/attendance/" class="btn btn-outline-secondary ms-2">
+                    <i class="bi bi-arrow-left"></i> Back to Attendance
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.form-control-lg {
+    font-size: 1.25rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+    font-family: 'Courier New', monospace;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #6f42c1, #8b5cf6);
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+}
+</style>
+
+{% endblock %}
