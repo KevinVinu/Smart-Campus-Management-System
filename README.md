@@ -43,26 +43,26 @@ Traditional campus systems suffer from:
 
 ### Installation Guide
 1️⃣ Clone Repository
-git clone https://github.com/yourusername/smart-campus.git
-cd smart-campus
+* git clone https://github.com/yourusername/smart-campus.git
+* cd smart-campus
 
 2️⃣ Backend Setup
-cd backend
-python -m venv venv
-venv\Scripts\activate   (Windows)
-source venv/bin/activate  (Mac/Linux)
-pip install -r requirements.txt
+* cd backend
+* python -m venv venv
+* venv\Scripts\activate   (Windows)
+* source venv/bin/activate  (Mac/Linux)
+* pip install -r requirements.txt
 Run migrations:
-python manage.py makemigrations
-python manage.py migrate
+* python manage.py makemigrations
+* python manage.py migrate
 
 3️⃣ Run Backend Server
-python manage.py runserver
+* python manage.py runserver
 
 4️⃣ Frontend Setup
-cd frontend
-npm install
-npm run dev
+* cd frontend
+* npm install
+* npm run dev
 
 
 ### Future Enhancements
